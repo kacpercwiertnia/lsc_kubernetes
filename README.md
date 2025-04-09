@@ -52,7 +52,7 @@ This installs the NFS server and configures a dynamic storage class named nfs-sc
 Apply the Persistent [Volume Claim YAML](https://github.com/kacpercwiertnia/lsc_kubernetes/blob/main/pvc.yaml):
 
 ```bash
-kubectl apply -f ./manifests/pvc.yaml
+kubectl apply -f pvc.yaml
 ```
 
 This PVC will be dynamically provisioned by the NFS provisioner and used by the HTTP server and content copy job.
@@ -62,7 +62,7 @@ This PVC will be dynamically provisioned by the NFS provisioner and used by the 
 Apply the [Deployment YAML](https://github.com/kacpercwiertnia/lsc_kubernetes/blob/main/deployment.yaml):
 
 ```bash
-kubectl apply -f ./manifests/deployment.yaml
+kubectl apply -f deployment.yaml
 ```
 
 The nginx container mounts the NFS volume at /usr/share/nginx/html so that it can serve dynamic content written to the volume.
@@ -72,7 +72,7 @@ The nginx container mounts the NFS volume at /usr/share/nginx/html so that it ca
 Apply the [Service YAML](https://github.com/kacpercwiertnia/lsc_kubernetes/blob/main/service.yaml):
 
 ```bash
-kubectl apply -f ./manifests/service.yaml
+kubectl apply -f service.yaml
 ```
 
 The service will expose the nginx deployment publicly. You can retrieve the external IP using:
@@ -86,7 +86,7 @@ kubectl get svc web-service
 Apply the [Job YAML](https://github.com/kacpercwiertnia/lsc_kubernetes/blob/main/job.yaml):
 
 ```bash
-kubectl apply -f ./manifests/job.yaml
+kubectl apply -f job.yaml
 ```
 
 This job writes a sample index.html file to the shared volume that is mounted by the nginx server.
